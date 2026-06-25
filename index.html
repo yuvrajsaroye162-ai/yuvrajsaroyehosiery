@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YS HOSIERY | Winter Refinement Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image" href="icon.png">
+    
+    <style>
+      /* --- ARCHITECTURAL MINIMALIST VARIABLES --- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        list-style: none;
+      }
+
+      :root {
+        --bg-pure: #000000;
+        --bg-studio: #050505;
+        --bg-elevation: #0a0a0a;
+        --luxury-gold: #c5a880; 
+        --text-pure: #ffffff;
+        --text-editorial: #e5e5e5;
+        --text-dimmed: #7a7a7a;
+        --hairline-border: rgba(255, 255, 255, 0.06);
+        --kinetic-timing: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-pure);
+        color: var(--text-pure);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        overflow-x: hidden;
+        background-color: var(--bg-pure);
+      }
+
+      /* --- CINEMATIC VIEW-DRIVEN SCROLL ENGINE --- */
+      @keyframes cinematicReveal {
+        from {
+          opacity: 0;
+          transform: translateY(60px) scale(0.96);
+          filter: blur(4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+          filter: blur(0);
+        }
+      }
+
+      @keyframes fadeBlurIn {
+        from {
+          opacity: 0;
+          filter: blur(8px);
+        }
+        to {
+          opacity: 1;
+          filter: blur(0);
+        }
+      }
+
+      /* Native CSS Scroll-Driven Animation using view() */
+      .scroll-animate {
+        animation: cinematicReveal linear both;
+        animation-timeline: view();
+        animation-range: entry 5% cover 30%;
+      }
+
+      /* --- ATELIER GLASS HEADER NAV --- */
+      .nav-viewport-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        z-index: 1000;
+      }
+
+      header {
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        border-bottom: 1px solid var(--hairline-border);
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5%;
+      }
+
+      .brand-crest {
+        font-size: 1.15rem;
+        font-weight: 500;
+        letter-spacing: 6px;
+        color: var(--text-pure);
+        text-transform: uppercase;
+      }
+
+      .brand-crest span {
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        text-transform: lowercase;
+        letter-spacing: 2px;
+        color: var(--luxury-gold);
+        margin-left: 4px;
+      }
+
+      .navigation-links {
+        display: flex;
+        gap: 50px;
+      }
+
+      header a {
+        color: var(--text-dimmed);
+        font-size: 0.75rem;
+        font-weight: 400;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        transition: var(--kinetic-timing);
+      }
+
+      header a:hover {
+        color: var(--text-pure);
+      }
+
+      .signin-nexus {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-nexus-btn {
+        background: transparent;
+        color: var(--text-pure) !important;
+        font-size: 0.75rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        padding: 14px 32px;
+        border: 1px solid var(--hairline-border);
+        transition: var(--kinetic-timing);
+      }
+
+      .action-nexus-btn:hover {
+        background: var(--text-pure);
+        color: #000000 !important;
+        border-color: var(--text-pure);
+      }
+
+      /* --- PREMIUM CUSTOM HAMBURGER CORE --- */
+      .menu-trigger {
+        display: none; /* Controlled via mobile mediaquery */
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        z-index: 1001;
+      }
+
+      .menu-trigger span {
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: var(--text-pure);
+        border-radius: 2px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: var(--kinetic-timing);
+      }
+
+      /* Geometric alignment configurations */
+      .menu-trigger span:nth-child(1) { top: 4px; }
+      .menu-trigger span:nth-child(2) { top: 12px; }
+      .menu-trigger span:nth-child(3) { top: 20px; }
+
+      /* Animation Matrix when active */
+      .menu-trigger.active span:nth-child(1) {
+        top: 12px;
+        transform: rotate(135deg);
+      }
+      .menu-trigger.active span:nth-child(2) {
+        opacity: 0;
+        left: -40px;
+      }
+      .menu-trigger.active span:nth-child(3) {
+        top: 12px;
+        transform: rotate(-135deg);
+      }
+
+      /* --- HERO EDITORIAL THEATER --- */
+      .hero-theater {
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 5%;
+        background: radial-gradient(circle at center, #0d0d0d 0%, var(--bg-pure) 80%);
+      }
+
+      .hero-content-bundle {
+        max-width: 1000px;
+        animation: fadeBlurIn 2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+      }
+
+      .hero-badge-tag {
+        display: inline-block;
+        color: var(--luxury-gold);
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+      }
+
+      .hero-theater h1 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 5.5rem;
+        font-weight: 300;
+        line-height: 1.1;
+        color: var(--text-pure);
+        margin-bottom: 50px;
+        letter-spacing: -1px;
+      }
+
+      .action-monolith {
+        background: transparent;
+        border: 1px solid var(--luxury-gold);
+        color: var(--luxury-gold);
+        font-size: 0.75rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        padding: 20px 48px;
+        cursor: pointer;
+        transition: var(--kinetic-timing);
+      }
+
+      .action-monolith:hover {
+        background: var(--luxury-gold);
+        color: #000000;
+        transform: translateY(-4px);
+      }
+
+      /* --- ATELIER STYLES & ROW REVEALS --- */
+      .ticker-ribbon {
+        width: 100%;
+        border-top: 1px solid var(--hairline-border);
+        border-bottom: 1px solid var(--hairline-border);
+        background: var(--bg-pure);
+        padding: 35px 0;
+        display: flex;
+        justify-content: center;
+        gap: 120px;
+        font-size: 0.75rem;
+        letter-spacing: 6px;
+        color: var(--text-dimmed);
+      }
+
+      .ticker-ribbon span {
+        transition: var(--kinetic-timing);
+      }
+      .ticker-ribbon span:hover {
+        color: var(--luxury-gold);
+      }
+
+      .editorial-row {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        padding: 160px 8%;
+        gap: 120px;
+        align-items: center;
+        border-bottom: 1px solid var(--hairline-border);
+      }
+
+      .editorial-row.reverse {
+        grid-template-columns: 0.9fr 1.1fr;
+      }
+
+      .editorial-row.reverse .canvas-frame { grid-column: 1; }
+      .editorial-row.reverse .prose-frame { grid-column: 2; }
+
+      .canvas-frame {
+        width: 100%;
+        height: 500px;
+        background: var(--bg-studio);
+        border: 1px solid var(--hairline-border);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: var(--kinetic-timing);
+      }
+
+      .canvas-frame:hover {
+        background: var(--bg-elevation);
+        border-color: var(--luxury-gold);
+      }
+
+      .canvas-frame i {
+        font-size: 2.2rem;
+        color: var(--luxury-gold);
+        margin-bottom: 25px;
+      }
+
+      .canvas-frame .frame-label {
+        font-size: 0.7rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--text-dimmed);
+      }
+
+      .prose-frame h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 3.5rem;
+        font-weight: 300;
+        color: var(--text-pure);
+        margin-bottom: 30px;
+        line-height: 1.2;
+      }
+
+      .prose-frame p {
+        font-size: 0.95rem;
+        font-weight: 300;
+        line-height: 1.9;
+        color: var(--text-editorial);
+        text-align: justify;
+      }
+
+      .profile-matrix {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
+        background: var(--hairline-border);
+        margin-top: 40px;
+      }
+
+      .matrix-cell {
+        background: var(--bg-pure);
+        padding: 25px;
+        transition: var(--kinetic-timing);
+      }
+
+      .matrix-cell:hover {
+        background: var(--bg-studio);
+      }
+
+      .matrix-cell h4 {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: var(--luxury-gold);
+        margin-bottom: 8px;
+      }
+
+      .matrix-cell p {
+        font-size: 0.85rem;
+        color: var(--text-pure);
+        font-weight: 400;
+        text-align: left;
+      }
+
+      /* --- THE MONOLITHIC GRID PANEL --- */
+      .studio-vault-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        background: var(--hairline-border);
+        padding: 1px;
+        gap: 1px;
+      }
+
+      .vault-tile {
+        background: var(--bg-pure);
+        padding: 90px 50px;
+        min-height: 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: var(--kinetic-timing);
+      }
+
+      .vault-tile i {
+        font-size: 1.8rem;
+        color: var(--luxury-gold);
+        margin-bottom: 20px;
+      }
+
+      .vault-tile h3 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.8rem;
+        font-weight: 300;
+        color: var(--text-pure);
+        margin-top: auto;
+        margin-bottom: 20px;
+      }
+
+      .vault-tile .vault-arrow {
+        font-size: 0.95rem;
+        color: var(--text-dimmed);
+        align-self: flex-end;
+        transition: var(--kinetic-timing);
+      }
+
+      .vault-tile:hover {
+        background: var(--bg-studio);
+      }
+
+      .vault-tile:hover .vault-arrow {
+        color: var(--luxury-gold);
+        transform: translateX(6px);
+      }
+
+      /* --- EXECUTIVE CONSOLE FORM --- */
+      .intake-theater {
+        padding: 180px 8%;
+        background: var(--bg-pure);
+        border-top: 1px solid var(--hairline-border);
+      }
+
+      .intake-grid {
+        max-width: 1300px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 140px;
+      }
+
+      .intake-manifesto h3 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 4rem;
+        font-weight: 300;
+        color: var(--text-pure);
+        margin-bottom: 30px;
+        line-height: 1.1;
+      }
+
+      .intake-manifesto p {
+        color: var(--text-dimmed);
+        font-size: 0.95rem;
+        line-height: 1.9;
+        font-weight: 300;
+      }
+
+      .luxury-console {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+      }
+
+      .console-field {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .console-field.span-all {
+        grid-column: span 2;
+      }
+
+      .console-field label {
+        font-size: 0.7rem;
+        font-weight: 400;
+        letter-spacing: 3px;
+        color: var(--text-pure);
+        text-transform: uppercase;
+      }
+
+      .luxury-console input, .luxury-console textarea {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--hairline-border);
+        padding: 16px 5px;
+        color: var(--text-pure);
+        font-size: 0.9rem;
+        transition: var(--kinetic-timing);
+      }
+
+      .luxury-console input:focus, .luxury-console textarea:focus {
+        outline: none;
+        border-bottom-color: var(--luxury-gold);
+      }
+
+      .console-nexus-buttons {
+        grid-column: span 2;
+        display: flex;
+        gap: 30px;
+        margin-top: 20px;
+      }
+
+      .console-btn {
+        padding: 22px 0;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        transition: var(--kinetic-timing);
+      }
+
+      .console-submit {
+        background: var(--text-pure);
+        color: #000000;
+        flex: 2;
+      }
+
+      .console-submit:hover {
+        background: var(--luxury-gold);
+      }
+
+      .console-reset {
+        background: transparent;
+        color: var(--text-dimmed);
+        border: 1px solid var(--hairline-border);
+        flex: 1;
+      }
+
+      .console-reset:hover {
+        border-color: var(--text-pure);
+        color: var(--text-pure);
+      }
+
+      /* --- ATELIER BRAND TERMINUS FOOTER --- */
+      .terminus {
+        background: #000000;
+        border-top: 1px solid var(--hairline-border);
+        padding: 100px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .hotline-string {
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: var(--luxury-gold);
+        margin-bottom: 15px;
+        letter-spacing: 2px;
+      }
+
+      .rights-string, .visit-thanks {
+        font-size: 0.75rem;
+        color: var(--text-dimmed);
+        letter-spacing: 1px;
+      }
+
+      .artisan-sig {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.3rem;
+        color: var(--text-pure);
+        margin-bottom: 15px;
+        text-align: right;
+      }
+
+      .sig-highlight {
+        color: var(--luxury-gold);
+        font-style: italic;
+      }
+
+      .terminus-right .visit-thanks {
+        text-align: right;
+      }
+
+      /* --- MEDIAQUERY RESPONSIVE BREAKPOINTS --- */
+      @media screen and (max-width: 1024px) {
+        .studio-vault-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media screen and (max-width: 991px) {
+        .hero-theater h1 {
+          font-size: 3.8rem;
+        }
+        
+        .editorial-row, .editorial-row.reverse {
+          grid-template-columns: 1fr !important;
+          gap: 60px;
+          padding: 100px 5%;
+        }
+        
+        .canvas-frame {
+          grid-column: span 1 !important;
+          height: 350px;
+        }
+        
+        .prose-frame {
+          grid-column: span 1 !important;
+        }
+        
+        .intake-grid {
+          grid-template-columns: 1fr;
+          gap: 80px;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .nav-viewport-wrapper {
+          height: 85px;
+        }
+        header {
+          padding: 0 6%;
+        }
+
+        .menu-trigger {
+          display: block; /* Custom Hamburger set active inside phone viewports */
+        }
+
+        .navigation-links {
+          position: absolute;
+          flex-direction: column;
+          right: -100%;
+          top: 85px;
+          background: #000000;
+          width: 100vw;
+          height: calc(100vh - 85px);
+          align-items: center;
+          justify-content: center;
+          gap: 45px;
+          transition: var(--kinetic-timing);
+          border-top: 1px solid var(--hairline-border);
+        }
+        
+        .navigation-links.active {
+          right: 0;
+        }
+        
+        .signin-nexus {
+          display: none;
+        }
+        
+        .ticker-ribbon {
+          flex-direction: column;
+          align-items: center;
+          gap: 25px;
+          padding: 20px 0;
+        }
+        
+        .luxury-console {
+          grid-template-columns: 1fr;
+        }
+        
+        .console-field.span-all {
+          grid-column: span 1;
+        }
+        
+        .console-nexus-buttons {
+          grid-column: span 1;
+          flex-direction: column;
+        }
+        
+        .studio-vault-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .terminus {
+          flex-direction: column;
+          gap: 40px;
+          text-align: center;
+        }
+        
+        .artisan-sig, .terminus-right .visit-thanks {
+          text-align: center;
+        }
+      }
+
+      /* --- MICRO-PHONE REFINEMENT MATRIX (ULTRA-MOBILE FIX) --- */
+      @media screen and (max-width: 468px) {
+        .brand-crest {
+          font-size: 1rem;
+          letter-spacing: 4px;
+        }
+
+        .hero-theater h1 {
+          font-size: 2.3rem; /* Scaled down beautifully to prevent line breaks */
+          letter-spacing: 0px;
+          margin-bottom: 35px;
+        }
+
+        .action-monolith {
+          padding: 16px 36px;
+          font-size: 0.7rem;
+          width: 100%; /* Spans full content bundle safely */
+          max-width: 280px;
+        }
+
+        .ticker-ribbon {
+          gap: 15px;
+          font-size: 0.65rem;
+          letter-spacing: 4px;
+        }
+
+        .editorial-row, .editorial-row.reverse {
+          padding: 60px 6%; /* Reduced padding for extra tracking width */
+          gap: 35px;
+        }
+
+        .prose-frame h2 {
+          font-size: 2.2rem;
+          margin-bottom: 15px;
+        }
+
+        .prose-frame p {
+          font-size: 0.88rem;
+          line-height: 1.7;
+          text-align: left; /* Eliminates dynamic awkward gaps on small devices */
+        }
+
+        .profile-matrix {
+          grid-template-columns: 1fr; /* Switch to stack structure for minimal legibility */
+          gap: 1px;
+        }
+
+        .matrix-cell {
+          padding: 20px;
+        }
+
+        .vault-tile {
+          padding: 60px 30px;
+          min-height: 240px;
+        }
+
+        .vault-tile h3 {
+          font-size: 1.5rem;
+        }
+
+        .intake-theater {
+          padding: 80px 6%;
+        }
+
+        .intake-manifesto h3 {
+          font-size: 2.6rem;
+        }
+
+        .console-btn {
+          padding: 18px 0;
+        }
+
+        .terminus {
+          padding: 60px 6%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="nav-viewport-wrapper">
+      <header>
+        <div class="brand-crest">YS <span>hosiery</span></div>
+        <nav class="navigation-links">
+          <a href="#hero-theater">Overview</a>
+          <a href="#contact">Profile</a>
+          <a href="#studio-vault-grid">Collections</a>
+          <a href="#intake-theater">Inquiries</a>
+        </nav>
+        <div class="signin-nexus">
+          <a href="#intake-theater" class="action-nexus-btn">Connect</a>
+        </div>
+        <button class="menu-trigger" aria-label="Toggle Navigation Framework">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+    </div>
+
+    <div class="hero-theater" id="hero-theater">
+      <div class="hero-content-bundle">
+        <div class="hero-badge-tag">An Established Legacy</div>
+        <h1>Refined Textual Craftsmanship.<br />Built for the Modern Winter.</h1>
+        <a href="#studio-vault-grid">
+          <button class="action-monolith">Explore Portfolio</button>
+        </a>
+      </div>
+    </div>
+
+    <div class="editorial-master-container">
+      
+      <div class="ticker-ribbon">
+        <span>GLOVES</span>
+        <span>CAPS</span>
+        <span>SCARVES</span>
+      </div>
+
+      <div class="editorial-row scroll-animate" id="contact">
+        <div class="canvas-frame">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span class="frame-label">Corporate Alignment</span>
+        </div>
+        <div class="prose-frame">
+          <h2>Contact Profile</h2>
+          <p>
+            Our relationship parameters are structured cleanly to accommodate premium high-volume manufacturing agreements and direct logistical queries. Reach out to our alignment cell below.
+          </p>
+          <div class="profile-matrix">
+            <div class="matrix-cell">
+              <h4>Direct Inquiries</h4>
+              <p>yuvrajsaroye162@gmail.com</p>
+            </div>
+            <div class="matrix-cell">
+              <h4>Secure Line</h4>
+              <p>+91 6280038280</p>
+            </div>
+            <div class="matrix-cell">
+              <h4>Headquarters</h4>
+              <p>Aman Nagar, Ludhiana, India</p>
+            </div>
+            <div class="matrix-cell">
+              <h4>Operational Window</h4>
+              <p>Mon — Sat, 9AM — 6PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="editorial-row reverse scroll-animate" id="g-gloves">
+        <div class="canvas-frame">
+          <i class="fa-solid fa-hand-back-fist"></i>
+          <span class="frame-label">Leather & Fur Atelier</span>
+        </div>
+        <div class="prose-frame">
+          <h2>The Fur Leather Glove</h2>
+          <p>
+            An exquisite convergence of thermal resilience, tailored architecture, and tactile execution. Specially configured for high-end winter operations, these items carry an expertly balanced deep navy exterior alongside a precisely sewn faux-fur insulation layer to shield wrists against heavy structural drafts. Ideal for driving, riding, or pristine city movement.
+          </p>
+        </div>
+      </div>
+
+      <div class="editorial-row scroll-animate" id="g-caps">
+        <div class="canvas-frame">
+          <i class="fa-solid fa-hat-cowboy"></i>
+          <span class="frame-label">Ribbed Yarn Lab</span>
+        </div>
+        <div class="prose-frame">
+          <h2>The Knitted Cap</h2>
+          <p>
+            Infuse minimal classic knit silhouettes with structural modern density. Built cleanly out of high-grade premium combed hosiery yardages, this deep crimson artifact shows a fine vertical orientation rib knit for versatile flexibility. Equipped with an layered base cuff to preserve high ear insulation parameters in dense sub-zero microclimates.
+          </p>
+        </div>
+      </div>
+
+      <div class="editorial-row reverse scroll-animate" id="g-scarfs">
+        <div class="canvas-frame">
+          <i class="fa-solid fa-scroll"></i>
+          <span class="frame-label">Textile Drape Studio</span>
+        </div>
+        <div class="prose-frame">
+          <h2>The Luxury Scarf</h2>
+          <p>
+            A bold statement piece that integrates seamlessly across fine sartorial tailoring. Composed entirely of exceptionally soft, breathable materials, this scarf delivers high styling versatility—whether draped over classic overcoats or cleanly tied for structural leisure. Built to preserve individual texture parameters over seasonal cycles.
+          </p>
+        </div>
+      </div>
+
+      <div class="editorial-row scroll-animate" id="g-dreams">
+        <div class="canvas-frame">
+          <i class="fa-solid fa-cloud-moon"></i>
+          <span class="frame-label">Corporate Manifesto</span>
+        </div>
+        <div class="prose-frame">
+          <h2>Our Core Vision</h2>
+          <p>
+            At YS Hosiery, our philosophy centers on radical focus. We purposely filter out consumer noise to devote deep craftsmanship to a tight trio of winter essentials: the perfect glove, the flawless cap, and the protective scarf. We prioritize pristine material resilience over cluttered catalogs to ensure lasting execution year after year.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="studio-vault-grid" id="studio-vault-grid">
+      <a href="#g-gloves" class="vault-tile">
+        <div class="card-icon"><i class="fa-solid fa-hand-fist"></i></div>
+        <h3>Gloves Catalog</h3>
+        <span class="vault-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+      </a>
+
+      <a href="#g-caps" class="vault-tile">
+        <div class="card-icon"><i class="fa-solid fa-hat-cowboy"></i></div>
+        <h3>Caps Architecture</h3>
+        <span class="vault-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+      </a>
+
+      <a href="#g-scarfs" class="vault-tile">
+        <div class="card-icon"><i class="fa-solid fa-scroll"></i></div>
+        <h3>Scarves Studio</h3>
+        <span class="vault-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+      </a>
+
+      <a href="#contact" class="vault-tile">
+        <div class="card-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+        <h3>Corporate Data</h3>
+        <span class="vault-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+      </a>
+
+      <a href="#g-dreams" class="vault-tile">
+        <div class="card-icon"><i class="fa-solid fa-cloud-moon"></i></div>
+        <h3>Vision Profiles</h3>
+        <span class="vault-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+      </a>
+
+      <a href="#intake-theater" class="vault-tile">
+        <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
+        <h3>Secure Communications</h3>
+        <span class="vault-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+      </a>
+    </div>
+
+    <div class="intake-theater" id="intake-theater">
+      <div class="intake-grid">
+        <div class="intake-manifesto">
+          <h3>Let's Connect</h3>
+          <p>
+            Initiate corporate synchronization or general procurement alignment. Submit your specific parameters below and our relationship directors will respond within a standard 24-hour cycle.
+          </p>
+        </div>
+        
+        <form action="https://formsubmit.co/yuvrajsaroye162@gmail.com" method="POST" class="luxury-console">
+          <div class="console-field">
+            <label>Full Identity</label>
+            <input type="text" name="name" required placeholder="Name" />
+          </div>
+          
+          <div class="console-field">
+            <label>Regional Matrix</label>
+            <input type="text" name="address" placeholder="City, Country" />
+          </div>
+          
+          <div class="console-field">
+            <label>Digital Post</label>
+            <input type="email" name="email" required placeholder="identity@domain.com" />
+          </div>
+          
+          <div class="console-field">
+            <label>Telephonic Terminal</label>
+            <input type="tel" name="Phone" required placeholder="+91 ..." />
+          </div>
+          
+          <div class="console-field span-all">
+            <label>Message Payload</label>
+            <textarea name="message" rows="4" placeholder="Outline your programmatic requirements here..."></textarea>
+          </div>
+          
+          <div class="console-nexus-buttons span-all">
+            <button type="submit" class="console-btn console-submit">Dispatch Inquiry</button>
+            <button type="reset" class="console-btn console-reset">Purge</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer class="terminus" id="footer">
+      <div class="terminus-left">
+        <p class="hotline-string">Hotline Terminal // +91 6280038280</p>
+        <p class="rights-string">&copy; 2026 YS Hosiery. All Professional Matrix Rights Reserved.</p>
+      </div>
+      <div class="terminus-right">
+        <p class="artisan-sig">Curated by <span class="sig-highlight">@Yuvraj Saroye</span></p>
+        <p class="visit-thanks">Concluded</p>
+      </div>
+    </footer>
+
+    <script>
+      const systemToggle = document.querySelector('.menu-trigger');
+      const navigationNexus = document.querySelector('.navigation-links');
+
+      systemToggle.addEventListener('click', () => {
+          systemToggle.classList.toggle('active');
+          navigationNexus.classList.toggle('active');
+      });
+
+      document.querySelectorAll('.navigation-links a').forEach(anchor => {
+          anchor.addEventListener('click', () => {
+              systemToggle.classList.remove('active');
+              navigationNexus.classList.remove('active');
+          });
+      });
+    </script>
+  </body>
+</html>
