@@ -46,21 +46,29 @@
         background-color: var(--bg-pure);
       }
 
-      /* --- AGGRESSIVE CINEMATIC VIEW ENGAGEMENT --- */
+      /* --- NATIVE CSS VIEW-TIMELINE ENGINE --- */
       .scroll-animate {
-        opacity: 0;
-        transform: translateY(120px) scale(0.9) rotateX(10deg);
-        filter: blur(10px);
-        transition: transform 0.9s var(--aggressive-curve), 
-                    opacity 0.9s ease-out, 
-                    filter 0.8s ease-out;
-        will-change: transform, opacity;
+        will-change: transform, opacity, filter;
+        
+        /* Links the animation behavior to the element's visibility inside the viewport */
+        animation: revealOnScroll linear both;
+        animation-timeline: view();
+        
+        /* Dictates exactly when the animation scales from 0% to 100% inside the viewport window */
+        animation-range: entry 5% cover 35%;
       }
 
-      .scroll-animate.reveal-active {
-        opacity: 1;
-        transform: translateY(0) scale(1) rotateX(0deg);
-        filter: blur(0);
+      @keyframes revealOnScroll {
+        from {
+          opacity: 0;
+          transform: translateY(120px) scale(0.92) rotateX(10deg);
+          filter: blur(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1) rotateX(0deg);
+          filter: blur(0);
+        }
       }
 
       @keyframes fadeBlurIn {
@@ -902,7 +910,7 @@
 
     </div>
 
-    <div class="studio-vault-grid id="studio-vault-grid">
+    <div class="studio-vault-grid" id="studio-vault-grid">
       <a href="#g-gloves" class="vault-tile scroll-animate">
         <div class="card-icon"><i class="fa-solid fa-hand-fist"></i></div>
         <h3>Gloves Catalog</h3>
@@ -995,7 +1003,7 @@
     </footer>
 
     <script>
-      // Navigation Logic Menu
+      // Navigation Logic Menu (Kept intact for responsive functionality)
       const systemToggle = document.querySelector('.menu-trigger');
       const navigationNexus = document.querySelector('.navigation-links');
 
@@ -1009,25 +1017,6 @@
               systemToggle.classList.remove('active');
               navigationNexus.classList.remove('active');
           });
-      });
-
-      // Aggressive High-Performance Viewport Engine
-      const observerOptions = {
-        root: null,
-        rootMargin: "0px 0px -80px 0px", // Triggers aggressively inside user perspective frame
-        threshold: 0.12
-      };
-
-      const scrollEngine = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('reveal-active');
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll('.scroll-animate').forEach(element => {
-        scrollEngine.observe(element);
       });
     </script>
   </body>
