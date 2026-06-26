@@ -11,7 +11,7 @@
     <link rel="icon" type="image" href="icon.png">
     
     <style>
-      /* --- ARCHITECTURAL MINIMALIST VARIABLES --- */
+      /* --- ARCHITECTURAL PREMIUM LIGHT VARIABLES --- */
       * {
         margin: 0;
         padding: 0;
@@ -21,15 +21,16 @@
       }
 
       :root {
-        --bg-pure: #000000;
-        --bg-studio: #050505;
-        --bg-elevation: #0a0a0a;
-        --luxury-gold: #c5a880; 
-        --text-pure: #ffffff;
-        --text-editorial: #e5e5e5;
-        --text-dimmed: #7a7a7a;
-        --hairline-border: rgba(255, 255, 255, 0.06);
-        --kinetic-timing: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        --bg-pure: #faf9f6;        /* Luxury Bone/Alabaster White */
+        --bg-studio: #f3f0e8;      /* Warm Studio Gray Tint */
+        --bg-elevation: #eae5da;   /* Rich Pressed Linen Tone */
+        --luxury-gold: #b39262;    /* Deepened Luxury Gold for Light Contrast */
+        --text-pure: #0f0f11;      /* Charcoal Obsidian Primary Text */
+        --text-editorial: #2b2b30; /* Soft Mid-Slate Editorial Prose */
+        --text-dimmed: #82807a;    /* Weathered Clay Dimmed Accents */
+        --hairline-border: rgba(15, 15, 17, 0.09);
+        --kinetic-timing: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        --aggressive-curve: cubic-bezier(0.34, 1.56, 0.64, 1); /* Elastic Pop */
       }
 
       html {
@@ -45,36 +46,34 @@
         background-color: var(--bg-pure);
       }
 
-      /* --- CINEMATIC VIEW-DRIVEN SCROLL ENGINE --- */
-      @keyframes cinematicReveal {
-        from {
-          opacity: 0;
-          transform: translateY(60px) scale(0.96);
-          filter: blur(4px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-          filter: blur(0);
-        }
+      /* --- AGGRESSIVE CINEMATIC VIEW ENGAGEMENT --- */
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(120px) scale(0.9) rotateX(10deg);
+        filter: blur(10px);
+        transition: transform 0.9s var(--aggressive-curve), 
+                    opacity 0.9s ease-out, 
+                    filter 0.8s ease-out;
+        will-change: transform, opacity;
+      }
+
+      .scroll-animate.reveal-active {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+        filter: blur(0);
       }
 
       @keyframes fadeBlurIn {
         from {
           opacity: 0;
-          filter: blur(8px);
+          transform: scale(0.95) translateY(30px);
+          filter: blur(12px);
         }
         to {
           opacity: 1;
+          transform: scale(1) translateY(0);
           filter: blur(0);
         }
-      }
-
-      /* Native CSS Scroll-Driven Animation using view() */
-      .scroll-animate {
-        animation: cinematicReveal linear both;
-        animation-timeline: view();
-        animation-range: entry 5% cover 30%;
       }
 
       /* --- ATELIER GLASS HEADER NAV --- */
@@ -88,7 +87,7 @@
       }
 
       header {
-        background: rgba(0, 0, 0, 0.85);
+        background: rgba(250, 249, 246, 0.85);
         backdrop-filter: blur(30px);
         -webkit-backdrop-filter: blur(30px);
         border-bottom: 1px solid var(--hairline-border);
@@ -125,7 +124,7 @@
       header a {
         color: var(--text-dimmed);
         font-size: 0.75rem;
-        font-weight: 400;
+        font-weight: 500;
         letter-spacing: 3px;
         text-transform: uppercase;
         transition: var(--kinetic-timing);
@@ -133,6 +132,7 @@
 
       header a:hover {
         color: var(--text-pure);
+        letter-spacing: 4px;
       }
 
       .signin-nexus {
@@ -147,19 +147,19 @@
         letter-spacing: 3px;
         text-transform: uppercase;
         padding: 14px 32px;
-        border: 1px solid var(--hairline-border);
+        border: 1px solid var(--text-pure);
         transition: var(--kinetic-timing);
       }
 
       .action-nexus-btn:hover {
         background: var(--text-pure);
-        color: #000000 !important;
-        border-color: var(--text-pure);
+        color: var(--bg-pure) !important;
+        transform: scale(1.05);
       }
 
       /* --- PREMIUM CUSTOM HAMBURGER CORE --- */
       .menu-trigger {
-        display: none; /* Controlled via mobile mediaquery */
+        display: none;
         cursor: pointer;
         background: transparent;
         border: none;
@@ -182,12 +182,10 @@
         transition: var(--kinetic-timing);
       }
 
-      /* Geometric alignment configurations */
       .menu-trigger span:nth-child(1) { top: 4px; }
       .menu-trigger span:nth-child(2) { top: 12px; }
       .menu-trigger span:nth-child(3) { top: 20px; }
 
-      /* Animation Matrix when active */
       .menu-trigger.active span:nth-child(1) {
         top: 12px;
         transform: rotate(135deg);
@@ -210,19 +208,19 @@
         justify-content: center;
         text-align: center;
         padding: 0 5%;
-        background: radial-gradient(circle at center, #0d0d0d 0%, var(--bg-pure) 80%);
+        background: radial-gradient(circle at center, #f2eee2 0%, var(--bg-pure) 80%);
       }
 
       .hero-content-bundle {
         max-width: 1000px;
-        animation: fadeBlurIn 2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        animation: fadeBlurIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
 
       .hero-badge-tag {
         display: inline-block;
         color: var(--luxury-gold);
-        font-size: 0.7rem;
-        font-weight: 500;
+        font-size: 0.75rem;
+        font-weight: 600;
         letter-spacing: 5px;
         text-transform: uppercase;
         margin-bottom: 30px;
@@ -248,12 +246,14 @@
         padding: 20px 48px;
         cursor: pointer;
         transition: var(--kinetic-timing);
+        font-weight: 600;
       }
 
       .action-monolith:hover {
         background: var(--luxury-gold);
-        color: #000000;
-        transform: translateY(-4px);
+        color: var(--bg-pure);
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(179, 146, 98, 0.15);
       }
 
       /* --- ATELIER STYLES & ROW REVEALS --- */
@@ -269,13 +269,16 @@
         font-size: 0.75rem;
         letter-spacing: 6px;
         color: var(--text-dimmed);
+        font-weight: 500;
       }
 
       .ticker-ribbon span {
         transition: var(--kinetic-timing);
+        cursor: pointer;
       }
       .ticker-ribbon span:hover {
         color: var(--luxury-gold);
+        transform: scale(1.1);
       }
 
       .editorial-row {
@@ -309,12 +312,18 @@
       .canvas-frame:hover {
         background: var(--bg-elevation);
         border-color: var(--luxury-gold);
+        transform: scale(1.02) rotate(-1deg);
       }
 
       .canvas-frame i {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
         color: var(--luxury-gold);
         margin-bottom: 25px;
+        transition: transform 0.6s var(--aggressive-curve);
+      }
+      
+      .canvas-frame:hover i {
+        transform: scale(1.3) rotate(10deg);
       }
 
       .canvas-frame .frame-label {
@@ -322,6 +331,7 @@
         letter-spacing: 4px;
         text-transform: uppercase;
         color: var(--text-dimmed);
+        font-weight: 500;
       }
 
       .prose-frame h2 {
@@ -335,7 +345,7 @@
 
       .prose-frame p {
         font-size: 0.95rem;
-        font-weight: 300;
+        font-weight: 400;
         line-height: 1.9;
         color: var(--text-editorial);
         text-align: justify;
@@ -357,6 +367,8 @@
 
       .matrix-cell:hover {
         background: var(--bg-studio);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.03);
       }
 
       .matrix-cell h4 {
@@ -370,7 +382,7 @@
       .matrix-cell p {
         font-size: 0.85rem;
         color: var(--text-pure);
-        font-weight: 400;
+        font-weight: 500;
         text-align: left;
       }
 
@@ -390,7 +402,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        transition: var(--kinetic-timing);
+        transition: transform 0.6s var(--aggressive-curve), background 0.5s ease;
       }
 
       .vault-tile i {
@@ -417,11 +429,14 @@
 
       .vault-tile:hover {
         background: var(--bg-studio);
+        transform: translateY(-10px) scale(1.02);
+        z-index: 2;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.06);
       }
 
       .vault-tile:hover .vault-arrow {
         color: var(--luxury-gold);
-        transform: translateX(6px);
+        transform: translateX(12px) scale(1.2);
       }
 
       /* --- EXECUTIVE CONSOLE FORM --- */
@@ -452,7 +467,7 @@
         color: var(--text-dimmed);
         font-size: 0.95rem;
         line-height: 1.9;
-        font-weight: 300;
+        font-weight: 400;
       }
 
       .luxury-console {
@@ -473,7 +488,7 @@
 
       .console-field label {
         font-size: 0.7rem;
-        font-weight: 400;
+        font-weight: 600;
         letter-spacing: 3px;
         color: var(--text-pure);
         text-transform: uppercase;
@@ -482,16 +497,18 @@
       .luxury-console input, .luxury-console textarea {
         background: transparent;
         border: none;
-        border-bottom: 1px solid var(--hairline-border);
+        border-bottom: 2px solid var(--hairline-border);
         padding: 16px 5px;
         color: var(--text-pure);
         font-size: 0.9rem;
+        font-family: 'Inter', sans-serif;
         transition: var(--kinetic-timing);
       }
 
       .luxury-console input:focus, .luxury-console textarea:focus {
         outline: none;
         border-bottom-color: var(--luxury-gold);
+        transform: translateX(4px);
       }
 
       .console-nexus-buttons {
@@ -504,7 +521,7 @@
       .console-btn {
         padding: 22px 0;
         font-size: 0.75rem;
-        font-weight: 500;
+        font-weight: 600;
         letter-spacing: 3px;
         text-transform: uppercase;
         border: none;
@@ -514,12 +531,15 @@
 
       .console-submit {
         background: var(--text-pure);
-        color: #000000;
+        color: var(--bg-pure);
         flex: 2;
       }
 
       .console-submit:hover {
         background: var(--luxury-gold);
+        color: var(--bg-pure);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(179, 146, 98, 0.2);
       }
 
       .console-reset {
@@ -532,11 +552,12 @@
       .console-reset:hover {
         border-color: var(--text-pure);
         color: var(--text-pure);
+        background: rgba(0,0,0,0.02);
       }
 
       /* --- ATELIER BRAND TERMINUS FOOTER --- */
       .terminus {
-        background: #000000;
+        background: #0d0d0e; /* Dark Anchor Terminal Frame */
         border-top: 1px solid var(--hairline-border);
         padding: 100px 8%;
         display: flex;
@@ -546,7 +567,7 @@
 
       .hotline-string {
         font-size: 0.95rem;
-        font-weight: 400;
+        font-weight: 500;
         color: var(--luxury-gold);
         margin-bottom: 15px;
         letter-spacing: 2px;
@@ -554,14 +575,14 @@
 
       .rights-string, .visit-thanks {
         font-size: 0.75rem;
-        color: var(--text-dimmed);
+        color: #707075;
         letter-spacing: 1px;
       }
 
       .artisan-sig {
         font-family: 'Cormorant Garamond', serif;
         font-size: 1.3rem;
-        color: var(--text-pure);
+        color: #ffffff;
         margin-bottom: 15px;
         text-align: right;
       }
@@ -617,7 +638,7 @@
         }
 
         .menu-trigger {
-          display: block; /* Custom Hamburger set active inside phone viewports */
+          display: block;
         }
 
         .navigation-links {
@@ -625,7 +646,7 @@
           flex-direction: column;
           right: -100%;
           top: 85px;
-          background: #000000;
+          background: var(--bg-pure);
           width: 100vw;
           height: calc(100vh - 85px);
           align-items: center;
@@ -678,7 +699,7 @@
         }
       }
 
-      /* --- MICRO-PHONE REFINEMENT MATRIX (ULTRA-MOBILE FIX) --- */
+      /* --- MICRO-PHONE REFINEMENT MATRIX --- */
       @media screen and (max-width: 468px) {
         .brand-crest {
           font-size: 1rem;
@@ -686,7 +707,7 @@
         }
 
         .hero-theater h1 {
-          font-size: 2.3rem; /* Scaled down beautifully to prevent line breaks */
+          font-size: 2.3rem;
           letter-spacing: 0px;
           margin-bottom: 35px;
         }
@@ -694,7 +715,7 @@
         .action-monolith {
           padding: 16px 36px;
           font-size: 0.7rem;
-          width: 100%; /* Spans full content bundle safely */
+          width: 100%;
           max-width: 280px;
         }
 
@@ -705,7 +726,7 @@
         }
 
         .editorial-row, .editorial-row.reverse {
-          padding: 60px 6%; /* Reduced padding for extra tracking width */
+          padding: 60px 6%;
           gap: 35px;
         }
 
@@ -717,11 +738,11 @@
         .prose-frame p {
           font-size: 0.88rem;
           line-height: 1.7;
-          text-align: left; /* Eliminates dynamic awkward gaps on small devices */
+          text-align: left;
         }
 
         .profile-matrix {
-          grid-template-columns: 1fr; /* Switch to stack structure for minimal legibility */
+          grid-template-columns: 1fr;
           gap: 1px;
         }
 
@@ -881,38 +902,38 @@
 
     </div>
 
-    <div class="studio-vault-grid" id="studio-vault-grid">
-      <a href="#g-gloves" class="vault-tile">
+    <div class="studio-vault-grid id="studio-vault-grid">
+      <a href="#g-gloves" class="vault-tile scroll-animate">
         <div class="card-icon"><i class="fa-solid fa-hand-fist"></i></div>
         <h3>Gloves Catalog</h3>
         <span class="vault-arrow"><i class="fa-solid fa-chevron-right"></i></span>
       </a>
 
-      <a href="#g-caps" class="vault-tile">
+      <a href="#g-caps" class="vault-tile scroll-animate">
         <div class="card-icon"><i class="fa-solid fa-hat-cowboy"></i></div>
         <h3>Caps Architecture</h3>
         <span class="vault-arrow"><i class="fa-solid fa-chevron-right"></i></span>
       </a>
 
-      <a href="#g-scarfs" class="vault-tile">
+      <a href="#g-scarfs" class="vault-tile scroll-animate">
         <div class="card-icon"><i class="fa-solid fa-scroll"></i></div>
         <h3>Scarves Studio</h3>
         <span class="vault-arrow"><i class="fa-solid fa-chevron-right"></i></span>
       </a>
 
-      <a href="#contact" class="vault-tile">
+      <a href="#contact" class="vault-tile scroll-animate">
         <div class="card-icon"><i class="fa-solid fa-map-location-dot"></i></div>
         <h3>Corporate Data</h3>
         <span class="vault-arrow"><i class="fa-solid fa-chevron-right"></i></span>
       </a>
 
-      <a href="#g-dreams" class="vault-tile">
+      <a href="#g-dreams" class="vault-tile scroll-animate">
         <div class="card-icon"><i class="fa-solid fa-cloud-moon"></i></div>
         <h3>Vision Profiles</h3>
         <span class="vault-arrow"><i class="fa-solid fa-chevron-right"></i></span>
       </a>
 
-      <a href="#intake-theater" class="vault-tile">
+      <a href="#intake-theater" class="vault-tile scroll-animate">
         <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
         <h3>Secure Communications</h3>
         <span class="vault-arrow"><i class="fa-solid fa-chevron-right"></i></span>
@@ -920,7 +941,7 @@
     </div>
 
     <div class="intake-theater" id="intake-theater">
-      <div class="intake-grid">
+      <div class="intake-grid scroll-animate">
         <div class="intake-manifesto">
           <h3>Let's Connect</h3>
           <p>
@@ -968,12 +989,13 @@
         <p class="rights-string">&copy; 2026 YS Hosiery. All Professional Matrix Rights Reserved.</p>
       </div>
       <div class="terminus-right">
-        <p class="artisan-sig">Curated by <span class="sig-highlight">@Yuvraj Saroye</span></p>
+        <p class="artisan-sig">Created by <span class="sig-highlight">@Yuvraj Saroye</span></p>
         <p class="visit-thanks">Concluded</p>
       </div>
     </footer>
 
     <script>
+      // Navigation Logic Menu
       const systemToggle = document.querySelector('.menu-trigger');
       const navigationNexus = document.querySelector('.navigation-links');
 
@@ -987,6 +1009,25 @@
               systemToggle.classList.remove('active');
               navigationNexus.classList.remove('active');
           });
+      });
+
+      // Aggressive High-Performance Viewport Engine
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px 0px -80px 0px", // Triggers aggressively inside user perspective frame
+        threshold: 0.12
+      };
+
+      const scrollEngine = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-active');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.scroll-animate').forEach(element => {
+        scrollEngine.observe(element);
       });
     </script>
   </body>
