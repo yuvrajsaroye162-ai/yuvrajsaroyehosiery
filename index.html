@@ -82,14 +82,14 @@
 
       /* --- NATIVE CSS VIEW-TIMELINE ENGINE --- */
       .scroll-animate {
-        will-change: transform, opacity, filter;
+        
         
         /* Links the animation behavior to the element's visibility inside the viewport */
-        animation: revealOnScroll linear both;
+        animation: revealOnScroll ease-in-out both;
         animation-timeline: view();
         
         /* Dictates exactly when the animation scales from 0% to 100% inside the viewport window */
-        animation-range: entry 5% cover 35%;
+        animation-range: 0%  30%;
       }
 
       @keyframes revealOnScroll {
@@ -983,8 +983,8 @@
       </a>
     </div>
 
-    <div class="intake-theater" id="intake-theater">
-      <div class="intake-grid scroll-animate">
+    <div class="intake-theater scroll-animate" id="intake-theater">
+      <div class="intake-grid ">
         <div class="intake-manifesto">
           <h3>Let's Connect</h3>
           <p>
@@ -992,8 +992,8 @@
           </p>
         </div>
         
-        <form action="https://formsubmit.co/yuvrajsaroye162@gmail.com" method="POST" class="luxury-console">
-          <div class="console-field">
+        <form action="https://formsubmit.co/yuvrajsaroye162@gmail.com" method="POST"  class="luxury-console">
+          <div class="console-field ">
             <label>Full Identity</label>
             <input type="text" name="name" required placeholder="Name" />
           </div>
